@@ -10,7 +10,7 @@ import './index.scss';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <BrowserRouter basename="/taskpro">
+      <BrowserRouter basename="/TaskPro">
         <App />
       </BrowserRouter>
     </PersistGate>
