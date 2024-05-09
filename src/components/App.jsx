@@ -10,7 +10,10 @@ import { BoardRoute, PrivateRoute, PublicRoute } from 'services/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUserInfo } from 'redux/auth/authOperations';
 import HeaderDashboard from './Bord/HeaderDashboard/HeaderDashboard';
-import { selectIsAuthLoading, selectIsLoggedIn } from 'redux/auth/authSelectors';
+import {
+  selectIsAuthLoading,
+  selectIsLoggedIn,
+} from 'redux/auth/authSelectors';
 
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 
@@ -36,36 +39,27 @@ const App = () => {
                 <PublicRoute restricted component={<CommonWelcomeField />} />
               }
             />
-            <Route path="/register" element={<PublicRoute restricted component={<RegisterForm />}/>}/>
-            <Route path="/login" element={<PublicRoute restricted component={<LoginForm />}/>}/>
+            <Route
+              path="/register"
+              element={<PublicRoute restricted component={<RegisterForm />} />}
+            />
+            <Route
+              path="/login"
+              element={<PublicRoute restricted component={<LoginForm />} />}
+            />
             <Route
               path="/home"
               element={<PrivateRoute component={<HomePage />} />}
             >
-              <Route path=":boardName" element={<BoardRoute component={<HeaderDashboard />} />} />
+              <Route
+                path=":boardName"
+                element={<BoardRoute component={<HeaderDashboard />} />}
+              />
             </Route>
             <Route path="*" element={<Navigate to="/welcome" />} />
           </Routes>
         </Suspense>
       )}
-      {/* <ToastContainer
-        position="center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        style={{
-          width: '700px',
-          height: '200px',
-          fontSize: '24px',
-          lineHeight: '36px',
-        }}
-      /> */}
     </>
   );
 };
